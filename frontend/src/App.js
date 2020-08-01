@@ -2,7 +2,7 @@ import React, {
   useState,
 } from 'react';
 
-import FileInput from './components/FileInput';
+import TextFileInput from './components/TextFileInput';
 
 export function App(props) {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -10,9 +10,8 @@ export function App(props) {
   return (
     <div className="app">
       <form>
-        <FileInput
+        <TextFileInput
           name="app__input-files"
-          accept=".txt"
           selectedFiles={selectedFiles}
           onChange={(files) => {
             console.log(files);
