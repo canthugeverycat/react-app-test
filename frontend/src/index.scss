@@ -7,8 +7,8 @@ html {
 
   body {
     height: 100%;
-    background: $background;
     margin: 0;
+    background: $background;
 
     #root {
       height: 100%;
@@ -16,21 +16,19 @@ html {
       .app {
         display: flex;
         height: 100%;
-
         align-items: center;
         justify-content: center;
-
         font-family: sans-serif;
 
         form {
           position: relative;
-          background: $primary;
           padding: 20px;
           border-radius: 4px;
+          background: $primary;
 
           h2 {
-            color: $dark;
             margin-top: 0;
+            color: $dark;
           }
           
           .btn {
@@ -44,29 +42,28 @@ html {
           left: 0;
           width: 410px;
           padding: 10px;
+          border: 5px solid $primary;
           border-radius: 4px;
           background: $primary;
-          font-weight: 600;
           color: $dark;
+          font-weight: 600;
           font-size: 14px;
-          background: $primary;
-          border: 5px solid $primary;
-          opacity: 0;
           text-transform: uppercase;
+          opacity: 0;
 
           &:after {
             content: "";
-            display: inline-block;
             position: absolute;
+            display: inline-block;
             right: 10px;
             bottom: 5px;
             font-size: 14px;
           }
 
           ul {
-            text-transform: none;
-            font-weight: 400;
             padding-left: 10px;
+            font-weight: 400;
+            text-transform: none;
             list-style: none;
           }
 
@@ -78,8 +75,8 @@ html {
 
             &:after {
               content: "SUCCESS";
-              color: $success;
               bottom: 11px;
+              color: $success;
             }
           }
 
