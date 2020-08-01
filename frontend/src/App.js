@@ -14,7 +14,6 @@ export function App(props) {
           name="app__input-files"
           selectedFiles={selectedFiles}
           onChange={(files) => {
-            console.log(files);
             setSelectedFiles(files);
           }}
           multiple

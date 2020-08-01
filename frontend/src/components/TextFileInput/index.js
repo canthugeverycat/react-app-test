@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 
 import validateTextFileTypes from '../../helpers/validateTextFileTypes';
+import FilePreview from '../FilePreview';
 
 import './index.css';
 
@@ -70,7 +71,7 @@ const TextFileInput = ({
 
             {!!selectedFiles.length && (
                 <div className="app__file-input__selected">
-                    {selectedFiles.map(file => file.name).join(", ")}
+                    {selectedFiles.map((file, i) => <FilePreview file={file} key={i}/>)}
                 </div>
             )}
         </div>
