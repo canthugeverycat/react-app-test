@@ -7,10 +7,13 @@ const FilePreview = ({file}) => {
     const [count, setCount] = useState();
 
     useEffect(() => {
-        file.text().then((content) => {
+        const calculateAndSetCount = async () => {
+            const content = await file.text();
             const count = content.split('\n').filter(line => line.length).length;
             setCount(count);
-        });
+        };
+        
+        calculateAndSetCount();
     }, [file]);
 
     return (
