@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import validateTextFileTypes from '../../helpers/validateTextFileTypes';
 import FilePreview from '../FilePreview';
 
-import './index.css';
+import './index.scss';
 
 const TextFileInput = ({
     name = 'file-input',
@@ -52,10 +52,13 @@ const TextFileInput = ({
                 id={name}
                 {...attributes}
                 type="file"
+                accept="text/plain"
                 onChange={e => {
                     onChange([...e.target.files]);
                 }}
-                accept="text/plain"
+                onClick={(e)=> { 
+                    e.target.value = null
+                }}
             />
 
             <label
@@ -66,7 +69,7 @@ const TextFileInput = ({
                 onDragEnter={e => handleDragEnter(e)}
                 onDragLeave={e => handleDragLeave(e)}
             >
-                Select files to upload or drag them over here
+                Choose a file or drag it here
             </label>
 
             {!!selectedFiles.length && (
