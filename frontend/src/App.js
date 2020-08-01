@@ -1,21 +1,25 @@
-import React from 'react';
+import React, {
+  useState,
+} from 'react';
+
+import FileInput from './components/FileInput';
 
 export function App(props) {
+  const [selectedFiles, setSelectedFiles] = useState([]);
+
   return (
     <div className="app">
       <form>
-        <input
-          name="emails"
-          type="file"
+        <FileInput
+          name="app__input-files"
           accept=".txt"
+          selectedFiles={selectedFiles}
+          onChange={(files) => {
+            console.log(files);
+            setSelectedFiles(files);
+          }}
           multiple
         />
-
-        <ul className="app__selected-files">
-          <li>firstitem.txt</li>
-          <li>seconditem.txt</li>
-          <li>thirditem.txt</li>
-        </ul>
 
         <button type="submit">Upload</button>
 

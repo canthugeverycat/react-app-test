@@ -1,0 +1,3 @@
+.app__file-input input[type="file"] {
+    display: none;
+}
