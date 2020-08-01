@@ -1,0 +1,92 @@
+@import './variables';
+
+@keyframes pulse-secondary {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba($secondary, 70%);
+	}
+	
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba($secondary, 0%);
+	}
+	
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba($secondary, 0%);
+	}
+}
+
+@keyframes pulse-res-warning {
+	0% {
+		box-shadow: 0 0 0 0 rgba($warning, 90%);
+	}
+	
+	70% {
+		box-shadow: 0 0 0 15px rgba($warning, 0%);
+	}
+	
+	100% {
+		box-shadow: 0 0 0 0 rgba($warning, 0%);
+	}
+}
+
+@keyframes pulse-res-success {
+	0% {
+		box-shadow: 0 0 0 0 rgba($success, 90%);
+	}
+	
+	70% {
+		box-shadow: 0 0 0 15px rgba($success, 0%);
+	}
+	
+	100% {
+		box-shadow: 0 0 0 0 rgba($success, 0%);
+	}
+}
+
+@keyframes pulse-res-error {
+	0% {
+		box-shadow: 0 0 0 0 rgba($error, 90%);
+	}
+	
+	70% {
+		box-shadow: 0 0 0 15px rgba($error, 0%);
+	}
+	
+	100% {
+		box-shadow: 0 0 0 0 rgba($error, 0%);
+	}
+}
+
+@keyframes fade-in-up-res {
+    from { 
+        opacity: 0;
+        transform: translateY(calc(150% + 10px));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(calc(100% + 10px));
+    }
+}
+
+@keyframes background-flash-success {
+    from { 
+        background: $success;
+    }
+
+    to {
+        background: $primary;
+    }
+}
+
+@keyframes background-flash-error {
+    from {
+        background: $error;
+    }
+
+    to {
+        background: $primary;
+    }
+}

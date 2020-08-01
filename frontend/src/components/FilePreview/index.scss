@@ -1,0 +1,31 @@
+@import '../../scss/variables';
+
+.app__file-preview {
+    pointer-events: none;
+    padding: 10px 10px 10px 50px;
+    position: relative;
+    margin-bottom: 5px;
+
+    img {
+        position: absolute;
+        left: 10px;
+        height: 35px;
+    }
+
+    p {
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__title {
+        font-weight: 600;
+        color: $dark;
+    }
+
+    &__count {
+        font-size: 14px;
+        color: lighten($dark, 10%);
+    }
+}

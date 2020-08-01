@@ -1,0 +1,111 @@
+@import './scss/variables';
+@import './scss/animations';
+@import './scss/buttons';
+
+html {
+  height: 100%;
+
+  body {
+    height: 100%;
+    background: $background;
+    margin: 0;
+
+    #root {
+      height: 100%;
+
+      .app {
+        display: flex;
+        height: 100%;
+
+        align-items: center;
+        justify-content: center;
+
+        font-family: sans-serif;
+
+        form {
+          position: relative;
+          background: $primary;
+          padding: 20px;
+          border-radius: 4px;
+
+          h2 {
+            color: $dark;
+            margin-top: 0;
+          }
+          
+          .btn {
+            margin-top: 20px;
+          }
+        }
+
+        &__response {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 410px;
+          padding: 10px;
+          border-radius: 4px;
+          background: $primary;
+          font-weight: 600;
+          color: $dark;
+          font-size: 14px;
+          background: $primary;
+          border: 5px solid $primary;
+          opacity: 0;
+          text-transform: uppercase;
+
+          &:after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            right: 10px;
+            bottom: 5px;
+            font-size: 14px;
+          }
+
+          ul {
+            text-transform: none;
+            font-weight: 400;
+            padding-left: 10px;
+            list-style: none;
+          }
+
+          &--success {
+            border-color: $success;
+            color: $success;
+            
+            animation: fade-in-up-res 0.3s linear forwards, pulse-res-success 2s infinite 0.5s;
+
+            &:after {
+              content: "SUCCESS";
+              color: $success;
+              bottom: 11px;
+            }
+          }
+
+          &--error {
+            border-color: $error;
+            
+            animation: fade-in-up-res 0.3s linear forwards, pulse-res-error 2s infinite 0.5s;
+
+            &:after {
+              content: "ERROR";
+              color: $error;
+            }
+          }
+
+          &--warning {
+            border-color: $warning;
+            
+            animation: fade-in-up-res 0.3s linear forwards, pulse-res-warning 2s infinite 0.5s;
+
+            &:after {
+              content: "WARNING";
+              color: $warning;
+            }
+          }
+        }
+      }
+    }
+  }
+}
