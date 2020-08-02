@@ -30,7 +30,7 @@ html {
             color: $dark;
           }
           
-          .btn {
+          .btn[type="submit"] {
             margin-top: 20px;
           }
         }

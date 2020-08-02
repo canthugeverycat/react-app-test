@@ -1,5 +1,8 @@
 import React from "react";
 
+
+import copyToClipboard from '../../helpers/copyToClipboard';
+
 import './index.scss';
 
 /**
@@ -34,13 +37,24 @@ const ResponseMessage = ({
             {type === 'UPLOAD_SUCCESS' ? 'Emails have been sent' : errorData.error}
 
             {/UPLOAD_FAIL_/.test(type) && (
-                <ul>
-                    {type === 'UPLOAD_FAIL_INVALID' ? (
-                        <li>{errorData.email}</li>
-                    ) : (
-                        errorData.emails.map((email, i) => <li key={i}>{email}</li>)
+                <>
+                    <ul>
+                        {type === 'UPLOAD_FAIL_INVALID' ? (
+                            <li>{errorData.email}</li>
+                        ) : (
+                            errorData.emails.map((email, i) => <li key={i}>{email}</li>)
+                        )}
+                    </ul>
+                    {!!errorData.emails && (
+                        <button
+                            className="btn btn--small"
+                            type="button"
+                            onClick={() => copyToClipboard(errorData.emails.join('\n'))}
+                        >
+                            COPY EMAILS
+                        </button>
                     )}
-                </ul>
+                </>
             )}
         </div>
     );

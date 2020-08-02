@@ -7,6 +7,7 @@
     text-transform: uppercase;
     color: $dark;
     line-height: normal;
+    letter-spacing: 0.5px;
     font-size: 18px;
     font-weight: 600;
     -moz-osx-font-smoothing: inherit;
@@ -19,6 +20,14 @@
     &:focus,
     &:active {
         outline: none;
+    }
+
+    &:active {
+        background: $secondary;
+    }
+
+    &:not(:disabled):hover {
+        transform: scale(0.95);
     }
 
     &:disabled {
@@ -53,5 +62,21 @@
 
             animation: pulse-secondary 2s infinite;
         }
+    }
+
+    &--small {
+        padding: 5px 10px;
+        border: 2px solid $border;
+        border-radius: 15px;
+        text-transform: uppercase;
+        color: $dark;
+        font-size: 10px;
+        font-weight: 600;
+    }
+
+    &--medium {
+        padding: 7px 15px;
+        border-radius: 20px;
+        font-size: 14px;
     }
 }
