@@ -3,8 +3,9 @@ import React, {
     useState,
 } from "react";
 
-import FileIcon from '../../media/icon-file-outline.svg';
+import getEmailsFromFiles from '../../helpers/getEmailsFromFiles';
 
+import FileIcon from '../../media/icon-file-outline.svg';
 import './index.scss';
 
 const FilePreview = ({file}) => {
@@ -12,9 +13,8 @@ const FilePreview = ({file}) => {
 
     useEffect(() => {
         const calculateAndSetCount = async () => {
-            const content = await file.text();
-            const count = content.split('\n').filter(line => line.length).length;
-            setCount(count);
+            const emails = await getEmailsFromFiles(file);
+            setCount(emails.length);
         };
         
         calculateAndSetCount();
@@ -24,7 +24,7 @@ const FilePreview = ({file}) => {
         <div className="app__file-preview">
             <img alt="File icon" src={FileIcon} />
             <p className="app__file-preview__title">{file.name}</p>
-            <p className="app__file-preview__count">{count} email addresses</p>
+            <p className="app__file-preview__count">{count} unique email addresses</p>
         </div>
     );
 };

@@ -1,5 +1,4 @@
 @import './scss/variables';
-@import './scss/animations';
 @import './scss/buttons';
 
 html {
@@ -40,67 +39,6 @@ html {
           position: absolute;
           bottom: 0;
           left: 0;
-          width: 410px;
-          padding: 10px;
-          border: 5px solid $primary;
-          border-radius: 4px;
-          background: $primary;
-          color: $dark;
-          font-weight: 600;
-          font-size: 14px;
-          text-transform: uppercase;
-          opacity: 0;
-
-          &:after {
-            content: "";
-            position: absolute;
-            display: inline-block;
-            right: 10px;
-            bottom: 5px;
-            font-size: 14px;
-          }
-
-          ul {
-            padding-left: 10px;
-            font-weight: 400;
-            text-transform: none;
-            list-style: none;
-          }
-
-          &--success {
-            border-color: $success;
-            color: $success;
-            
-            animation: fade-in-up-res 0.3s linear forwards, pulse-res-success 2s infinite 0.5s;
-
-            &:after {
-              content: "SUCCESS";
-              bottom: 11px;
-              color: $success;
-            }
-          }
-
-          &--error {
-            border-color: $error;
-            
-            animation: fade-in-up-res 0.3s linear forwards, pulse-res-error 2s infinite 0.5s;
-
-            &:after {
-              content: "ERROR";
-              color: $error;
-            }
-          }
-
-          &--warning {
-            border-color: $warning;
-            
-            animation: fade-in-up-res 0.3s linear forwards, pulse-res-warning 2s infinite 0.5s;
-
-            &:after {
-              content: "WARNING";
-              color: $warning;
-            }
-          }
         }
       }
     }

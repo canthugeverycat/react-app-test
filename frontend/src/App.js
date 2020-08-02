@@ -4,9 +4,16 @@ import React, {
 } from 'react';
 
 import TextFileInput from './components/TextFileInput';
+import ResponseMessage from './components/ResponseMessage';
 
 import reducer from './helpers/reducer';
+import getEmailsFromFiles from './helpers/getEmailsFromFiles';
 
+/**
+ * Main container for the app, a wireframe.
+ * This is where smaller components are rendered,
+ * and main state and logic for sending emails are housed
+ */
 export function App() {
   const [state, dispatch] = useReducer(
     reducer,
@@ -18,6 +25,12 @@ export function App() {
     },
   );
 
+  /**
+   * Handles the response from the API
+   * and dispatches a proper action
+   *
+   * @param {Response} res Response object
+   */
   const handleResponse = useCallback(async (res) => {
     const errorData = res.status === 200 ? null : await res.json();
 
@@ -30,45 +43,46 @@ export function App() {
     dispatch(actions[res.status]);
   }, []);
 
+  /**
+   * Parses emails from selected files,
+   * removes any duplicates and sends it to the API
+   *
+   * @param {Event} e Event object from 'submit' event
+   */
   const handleOnSubmit = useCallback(async (e) => {
     e.preventDefault();
 
     dispatch({type: 'UPLOAD'});
 
-    let emails = [];
+    const emails = await getEmailsFromFiles(state.selectedFiles);
 
-    for (let i = 0; i < state.selectedFiles.length; i++) {
-      let text = await state.selectedFiles[i].text();
-      text = text.split('\n').filter(line => line.length);
-
-      emails.push(text);
-    }
-    emails = emails.flat();
-
-    const options = {
+    const response = await fetch(
+      'https://frontend-homework.togglhire.vercel.app/api/send',
+      {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ emails }),
-    };
-    const result = await fetch('https://frontend-homework.togglhire.vercel.app/api/send', options);
-    handleResponse(result);
+      }
+    );
+    handleResponse(response);
   }, [state.selectedFiles, handleResponse]);
 
   return (
     <div className="app">
-      <form onSubmit={handleOnSubmit}>
+      <form onSubmit={handleOnSubmit} >
 
         <h2>MAIL-O-MATIC-2000</h2>
 
         <TextFileInput
           name="app__file-input"
+          multiple
           selectedFiles={state.selectedFiles}
           onChange={(files) => {
+            // Prevents if user presses cancel on file window
             if (files.length) {
               dispatch({type: 'SELECT_FILES', files});
             }
           }}
-          multiple
         />
 
         <button
@@ -79,24 +93,7 @@ export function App() {
           Upload
         </button>
 
-        {state.resType === 'UPLOAD_SUCCESS' && (
-          <div className="app__response app__response--success">
-            Emails have been sent!
-          </div>
-        )}
-        
-        {/UPLOAD_FAIL_/.test(state.resType) && (
-          <div className={`app__response app__response${state.resType === 'UPLOAD_FAIL_INVALID' ? '--error' : '--warning'}`}>
-            {state.errorData.error}
-            <ul>
-              {state.resType === 'UPLOAD_FAIL_INVALID' ? (
-                <li>{state.errorData.email}</li>
-              ) : (
-                state.errorData.emails.map(email => <li>{email}</li>)
-              )}
-            </ul>
-          </div>
-        )}
+        <ResponseMessage type={state.resType} errorData={state.errorData} />
       </form>
     </div>
   );

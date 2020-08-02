@@ -6,15 +6,6 @@ export default function reducer(state, action) {
                 selectedFiles: action.files,
                 resType: '',
                 errorData: null,
-                // resType: 'UPLOAD_FAIL_INVALID',
-                // errorData: {
-                //     "error": "Failed to send emails to some addresses",
-                //     "emails": [
-                //       "ucamacho@example.net",
-                //       "matthaeiarnold@example.com",
-                //       "harrietheser@example.org"
-                //     ]
-                //   },
             };
         case 'UPLOAD':
             return {
