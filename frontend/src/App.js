@@ -10,9 +10,9 @@ import reducer from './helpers/reducer';
 import getEmailsFromFiles from './helpers/getEmailsFromFiles';
 
 /**
- * Main container for the app, a wireframe.
+ * Main container for the app.
  * This is where smaller components are rendered,
- * and main state and logic for sending emails are housed
+ * and main state and logic for sending emails are housed.
  */
 export function App() {
   const [state, dispatch] = useReducer(
@@ -26,9 +26,8 @@ export function App() {
   );
 
   /**
-   * Handles the response from the API
-   * and dispatches a proper action
-   *
+   * Handles response from the API and dispatches a proper action
+   * 
    * @param {Response} res Response object
    */
   const handleResponse = useCallback(async (res) => {
@@ -45,9 +44,10 @@ export function App() {
 
   /**
    * Parses emails from selected files,
-   * removes any duplicates and sends it to the API
+   * removes any duplicates and sends them to the API
+   * Triggered by the form
    *
-   * @param {Event} e Event object from 'submit' event
+   * @param {Event} e Instance of Event interface from 'submit' event
    */
   const handleOnSubmit = useCallback(async (e) => {
     e.preventDefault();

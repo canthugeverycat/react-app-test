@@ -2,6 +2,12 @@ import React from "react";
 
 import './index.scss';
 
+/**
+ * Responsible for displaying a response message from the API
+ * 
+ * @param {string} type Action type based on the response received
+ * @param {Object|null} errorData Response from the API if an error occurred
+ */
 const ResponseMessage = ({
     type,
     errorData,
@@ -25,7 +31,7 @@ const ResponseMessage = ({
 
     return (
         <div className={`app__response app__response--${classModifier}`}>
-            {type === 'UPLOAD_SUCCESS' ? 'Emails have been sent!' : errorData.error}
+            {type === 'UPLOAD_SUCCESS' ? 'Emails have been sent' : errorData.error}
 
             {/UPLOAD_FAIL_/.test(type) && (
                 <ul>

@@ -1,3 +1,11 @@
+/**
+ * Reducer used to manage state in App.js
+ *
+ * @param {Object} state Previous state
+ * @param {Object} action Dispatched action
+ *
+ * @return {Object} New state object
+ */
 export default function reducer(state, action) {
     switch (action.type) {
         case 'SELECT_FILES':

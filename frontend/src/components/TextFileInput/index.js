@@ -5,36 +5,42 @@ import FilePreview from '../FilePreview';
 
 import './index.scss';
 
+/**
+ * Renders text file input with drag and drop and the selected files
+ * 
+ * @param {string} name Identifier to connect label and input element
+ * @param {Array.<File>} selectedFiles An array of already selected files
+ * @param {Function} onChange Fires to update selectedFiles in its' parent component
+ * @param {Object} attributes Optional atttributes to attach to the input element
+ */
 const TextFileInput = ({
     name = 'file-input',
     selectedFiles = [],
     onChange = () => {},
     ...attributes
 }) => {
+    // Handles drag and drop state of the drop zone so it can be styled
     const [dndState, setDndState] = useState('');
 
-    const handleDragOver = e => {
+    const preventDefaultBehavior = e => {
         e.preventDefault();
         e.stopPropagation();
     };
 
-    const handleDragEnter = e => {
-        e.preventDefault();
-        e.stopPropagation();
+    const handleDragOver = preventDefaultBehavior;
 
+    const handleDragEnter = e => {
+        preventDefaultBehavior(e)
         setDndState('drag-enter');
     };
 
     const handleDragLeave = e => {
-        e.preventDefault();
-        e.stopPropagation();
-
+        preventDefaultBehavior(e)
         setDndState('');
     };
 
     const handleDrop = e => {
-        e.preventDefault();
-        e.stopPropagation();
+        preventDefaultBehavior(e)
 
         const areFilesValid = validateTextFileTypes(e.dataTransfer.files);
 
@@ -56,7 +62,9 @@ const TextFileInput = ({
                 onChange={e => {
                     onChange([...e.target.files]);
                 }}
-                onClick={(e)=> { 
+                onClick={(e)=> {
+                    // Prevents an issue where onChange wouldn't fire
+                    // if you made the same selection again
                     e.target.value = null
                 }}
             />
@@ -69,12 +77,12 @@ const TextFileInput = ({
                 onDragEnter={e => handleDragEnter(e)}
                 onDragLeave={e => handleDragLeave(e)}
             >
-                <span>Choose a file or drag it here</span>
+                <span>Choose a text file or drag it here</span>
             </label>
 
             {!!selectedFiles.length && (
                 <div className="app__file-input__selected">
-                    {selectedFiles.map((file, i) => <FilePreview file={file} key={i}/>)}
+                    {selectedFiles.map(file => <FilePreview key={file.name} file={file}/>)}
                 </div>
             )}
         </div>

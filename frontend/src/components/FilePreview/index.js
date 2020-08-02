@@ -8,6 +8,12 @@ import getEmailsFromFiles from '../../helpers/getEmailsFromFiles';
 import FileIcon from '../../media/icon-file-outline.svg';
 import './index.scss';
 
+/**
+ * Renders a preview of a file with
+ * number of unique emails inside the file
+ *
+ * @param {File} file  A File object
+ */
 const FilePreview = ({file}) => {
     const [count, setCount] = useState();
 
@@ -16,7 +22,6 @@ const FilePreview = ({file}) => {
             const emails = await getEmailsFromFiles(file);
             setCount(emails.length);
         };
-        
         calculateAndSetCount();
     }, [file]);
 
