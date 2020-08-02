@@ -20,6 +20,11 @@
         text-transform: uppercase;
         font-weight: 600;
 
+        span {
+            // This prevents an issue with Firefox that triggers 'ondragleave' when dragging over a text node
+            pointer-events: none;
+        }
+
         &:hover {
             cursor: pointer;
         }

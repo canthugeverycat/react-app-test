@@ -69,7 +69,7 @@ const TextFileInput = ({
                 onDragEnter={e => handleDragEnter(e)}
                 onDragLeave={e => handleDragLeave(e)}
             >
-                Choose a file or drag it here
+                <span>Choose a file or drag it here</span>
             </label>
 
             {!!selectedFiles.length && (
